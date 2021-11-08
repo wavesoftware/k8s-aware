@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-aware
+  labels:
+    app: k8s-aware
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-aware
+  template:
+    metadata:
+      labels:
+        app: k8s-aware
+    spec:
+      containers:
+        - name: service
+          image: ghcr.io/wavesoftware/k8s-aware/service:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-aware
+spec:
+  selector:
+    app: k8s-aware
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

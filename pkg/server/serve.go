@@ -8,11 +8,13 @@ import (
 	"os"
 
 	"github.com/wavesoftware/k8s-aware/pkg/k8s"
+	"github.com/wavesoftware/k8s-aware/pkg/metadata"
 	"github.com/wavesoftware/k8s-aware/pkg/utils/retcode"
 )
 
 // Serve an HTTP service.
 func Serve() int {
+	log.Println("Version: ", metadata.Version)
 	client, err := k8s.NewClient()
 	if err != nil {
 		return handleError(err)
