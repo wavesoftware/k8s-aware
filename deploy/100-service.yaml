@@ -20,6 +20,7 @@ spec:
           image: ghcr.io/wavesoftware/k8s-aware/service:latest
           ports:
             - containerPort: 8080
+      serviceAccountName: k8s-aware
 ---
 apiVersion: v1
 kind: Service

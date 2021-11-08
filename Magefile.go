@@ -80,7 +80,7 @@ func deployWithKubectl() error {
 }
 
 func replaceImage(resolver config.Resolver) error {
-	input, err := ioutil.ReadFile("service.yaml")
+	input, err := ioutil.ReadFile("100-service.yaml")
 	if err != nil {
 		return err // nolint:wrapcheck
 	}
@@ -89,7 +89,7 @@ func replaceImage(resolver config.Resolver) error {
 		"ghcr.io/wavesoftware/k8s-aware/service:latest",
 		resolver())
 
-	err = ioutil.WriteFile("service.yaml", []byte(contents), rwUser)
+	err = ioutil.WriteFile("100-service.yaml", []byte(contents), rwUser)
 	return err // nolint:wrapcheck
 }
 
